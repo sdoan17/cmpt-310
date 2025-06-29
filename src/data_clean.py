@@ -1,12 +1,19 @@
 import pandas as pd
 
-data = pd.read_csv("raw/data.csv", sep=';', engine='python', encoding='utf-8')
+data = pd.read_csv("../data/raw/data.csv", sep=';', engine='python', encoding='utf-8')
 
 data.columns = data.columns.str.strip()
 
 data.rename(columns=lambda x: x.strip(), inplace=True)
 
-data['Target'] = data['Target'].apply(lambda x: 0 if x == 'Dropout' else 1)
+# data['Target'] = data['Target'].apply(lambda x: 0 if x == 'Dropout' else 1)
+
+# Map to numbers
+data['Target'] = data['Target'].map({
+    'Dropout': 0,
+    'Enrolled': 1,
+    'Graduate': 2
+})
 
 drop_cols = [
     'Unemployment rate', 'Inflation rate', 'GDP',
@@ -16,7 +23,6 @@ drop_cols = [
     'Nacionality',
     'Application mode', 'Course'
 ]
-
 clean_data = data.drop(columns=drop_cols)
 
 clean_data.dropna(inplace=True)
@@ -35,4 +41,4 @@ cols.insert(cols.index('Curricular units 2nd sem (approved)') + 1, 'Curricular u
 
 clean_data = clean_data[cols]
 
-clean_data.to_csv('clean_data.csv', index=False)
+clean_data.to_csv('../data/processed/clean_data.csv', index=False)
