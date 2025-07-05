@@ -1,0 +1,8 @@
+              precision    recall  f1-score   support
+
+     Dropout       0.66      0.74      0.70       285
+     No Risk       0.87      0.82      0.84       600
+
+    accuracy                           0.80       885
+   macro avg       0.77      0.78      0.77       885
+weighted avg       0.80      0.80      0.80       885

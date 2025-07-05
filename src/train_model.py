@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import accuracy_score, classification_report
 import matplotlib.pyplot as plt
+import joblib
 
 data = pd.read_csv("../data/processed/clean_data.csv")
 
@@ -62,8 +63,11 @@ X = pd.get_dummies(X, drop_first = True)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 10)
 
+# Save the test set
+joblib.dump((X_test,y_test), '../models/test_set.pkl')
 tree = DecisionTreeClassifier(random_state = 10)
 tree.fit(X_train, y_train)
+joblib.dump(tree, '../models/decision_tree.pkl')
 
 y_pred = tree.predict(X_test)
 print("Accuracy:", accuracy_score(y_test, y_pred))
