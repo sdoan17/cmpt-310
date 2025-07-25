@@ -30,7 +30,6 @@ clean_data.dropna(inplace=True)
 clean_data['Curricular units 1st sem (pass rate)'] = (clean_data['Curricular units 1st sem (approved)'] / clean_data['Curricular units 1st sem (enrolled)']).fillna(0)
 
 clean_data['Curricular units 2nd sem (pass rate)'] = (clean_data['Curricular units 2nd sem (approved)'] / clean_data['Curricular units 2nd sem (enrolled)']).fillna(0)
-
 cols = clean_data.columns.tolist()
 
 cols.remove('Curricular units 1st sem (pass rate)')
@@ -40,5 +39,4 @@ cols.insert(cols.index('Curricular units 1st sem (approved)') + 1, 'Curricular u
 cols.insert(cols.index('Curricular units 2nd sem (approved)') + 1, 'Curricular units 2nd sem (pass rate)')
 
 clean_data = clean_data[cols]
-
 clean_data.to_csv('../data/processed/clean_data.csv', index=False)

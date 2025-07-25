@@ -21,6 +21,9 @@ data['overall_pass_rate'] = (
     data['Curricular units 1st sem (enrolled)'] +
     data['Curricular units 2nd sem (enrolled)']
 )
+# Replace NaN resulting from division by zero with 0
+data['overall_pass_rate'] = data['overall_pass_rate'].fillna(0)
+
 data['grade_diff'] = (
     data['Curricular units 2nd sem (grade)'] -
     data['Curricular units 1st sem (grade)']
@@ -65,6 +68,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, rando
 
 # Save the test set
 joblib.dump((X_test,y_test), '../models/test_set.pkl')
+joblib.dump((X_train,y_train), '../models/train_set.pkl')
 tree = DecisionTreeClassifier(random_state = 10)
 tree.fit(X_train, y_train)
 joblib.dump(tree, '../models/decision_tree.pkl')
