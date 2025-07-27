@@ -1,0 +1,22 @@
+=== decision_tree ===
+              precision    recall  f1-score   support
+
+     Dropout       0.65      0.71      0.68       285
+     No Risk       0.86      0.82      0.84       600
+
+    accuracy                           0.78       885
+   macro avg       0.75      0.76      0.76       885
+weighted avg       0.79      0.78      0.79       885
+
+
+=== knn ===
+              precision    recall  f1-score   support
+
+     Dropout       0.82      0.61      0.70       285
+     No Risk       0.84      0.94      0.88       600
+
+    accuracy                           0.83       885
+   macro avg       0.83      0.77      0.79       885
+weighted avg       0.83      0.83      0.82       885
+
+
